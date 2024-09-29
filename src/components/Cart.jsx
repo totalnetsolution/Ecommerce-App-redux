@@ -3,39 +3,39 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectCartItems, selectCartTotal, removeFromCart } from '../features/cart/cartSlice';
 
 const Cart = () => {
-  const cartItems = useSelector(selectCartItems);
-  const totalAmount = useSelector(selectCartTotal);
+  const cartItems = useSelector(selectCartItems); 
+  const totalAmount = useSelector(selectCartTotal);  
   const dispatch = useDispatch();
 
+  if (cartItems.length === 0) {
+    return <p>Your cart is empty</p>;
+  }
+
   return (
-    <div className="card mt-5">
-      <div className="card-body">
-        <h3>Cart</h3>
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty</p>
-        ) : (
-          <>
-            <ul className="list-group">
-              {cartItems.map((item) => (
-                <li className="list-group-item d-flex justify-content-between align-items-center" key={item.id}>
-                  <div>
-                    <h5>{item.name}</h5>
-                    <p>
-                      ${item.price} x {item.quantity} = ${item.totalPrice}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => dispatch(removeFromCart(item.id))}
-                    className="btn btn-danger"
-                  >
-                    Remove
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <h4 className="mt-4">Total: ${totalAmount}</h4>
-          </>
-        )}
+    <div className="container">
+      <h2 className="text-center my-4">Your Cart</h2>
+      <div className="row">
+        <div className="col-md-8">
+          <ul className="list-group mb-4">
+            {cartItems.map((item) => (
+              <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <h5>{item.title}</h5>
+                  <p>Price: ${item.price} x {item.quantity} = ${item.totalPrice.toFixed(2)}</p>
+                </div>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => dispatch(removeFromCart(item.id))}  
+                >
+                  Remove
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="col-md-4">
+          <h4>Total Amount: ${totalAmount.toFixed(2)}</h4>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCartQuantity } from '../features/cart/cartSlice';
-import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const totalQuantity = useSelector(selectCartQuantity);
@@ -15,9 +15,10 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/cart">
-                Cart ({totalQuantity})
-              </Link>
+              <Link className="nav-link" to="/">Products</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/cart">Cart ({totalQuantity})</Link>
             </li>
           </ul>
         </div>
