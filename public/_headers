@@ -1,0 +1,5 @@
+/* 
+  Access-Control-Allow-Origin: *
+  
+/assets/* 
+  Content-Type: application/javascript
