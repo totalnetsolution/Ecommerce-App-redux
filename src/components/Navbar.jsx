@@ -7,7 +7,7 @@ const Navbar = () => {
   const totalQuantity = useSelector(selectCartQuantity);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-info">
       <div className="container">
         <Link className="navbar-brand" to="/">
           Ecommerce
